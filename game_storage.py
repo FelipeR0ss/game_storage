@@ -9,7 +9,7 @@ def load_data():
     try:
         if not os.path.exists('database.csv'):
             with open('database.csv', 'w') as file:
-                pass  # Cria o arquivo vazio
+                pass
             messagebox.showinfo(
                 "Load Data", "Database file created as it did not exist.")
             return
@@ -18,7 +18,7 @@ def load_data():
             lines = file.readlines()
             for line in lines:
                 details = line.strip().split(',')
-                if len(details) == 5:  # Verifique se há exatamente cinco elementos na linha
+                if len(details) == 5:
                     game, gender, initializer, status, note = details
                     STORAGE[game] = {
                         'gender': gender, 'initializer': initializer, 'status': status, 'note': note}
@@ -151,7 +151,7 @@ def clear_entries():
 root = tk.Tk()
 root.title("Game Catalog")
 
-# Input Fields
+# Input
 frame = tk.Frame(root)
 frame.pack(pady=10)
 
@@ -185,12 +185,12 @@ tk.Button(root, text="Export Data",
 tk.Button(root, text="Import Data",
           command=import_games).pack(fill=tk.X, pady=2)
 
-# List of Games
+# Game List
 games_list = tk.Listbox(root)
 games_list.pack(fill=tk.BOTH, expand=True)
 games_list.bind("<<ListboxSelect>>", show_game_details)
 
-# Initial Load
+# Load
 load_data()
 list_games()
 
